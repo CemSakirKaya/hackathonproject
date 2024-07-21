@@ -5,20 +5,28 @@
   box-sizing: border-box;
 }
 
-body, #root {
-  height: 100%;
+/* Background color and scrolling setup for HTML and Body */
+html, body {
+  min-height: 100%;
+  background-color: #f0f0f0; /* Background color for the entire page */
+  overflow: hidden; /* Allow scrolling for the body */
 }
 
+/* Set full height and background color for root container */
+body {
+  margin: 0; /* Remove default body margin */
+}
+
+/* App container to center content */
 #app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
 }
 
+/* Navbar styling */
 .navbar {
   width: 100%;
   background-color: #333;
@@ -27,17 +35,19 @@ body, #root {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
 }
 
+/* Content area setup */
 .page-content {
-  width: 100%;
-  max-width: 800px; /* Example: Set maximum width for content */
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  /* Center content vertically and horizontally */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 75%;
+  min-width: 800px; /* Example: Set minimum width for content */
+  background-color: #fff; /* Background color for content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for content */
+  margin-top: 50px; /* Adjust based on navbar height */
+  margin-bottom: 20px; /* Add margin-bottom to avoid content sticking to the bottom */
+  padding: 20px; /* Add padding inside content */
+  position: relative; /* Allow the content to be scrollable */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  max-height: calc(100vh - 60px); /* Adjust based on navbar height and padding */
 }

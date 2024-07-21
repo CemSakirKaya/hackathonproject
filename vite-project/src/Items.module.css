@@ -1,0 +1,104 @@
+.itemsContainer {
+    margin-top: 20px; /* Adjust based on your navbar height */
+    padding: 20px; /* Add padding for content spacing */
+    width: 100%;
+    position: relative; /* Position relative to contain the overlay */
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+}
+
+.cardContainer {
+    position: relative; /* Position relative to handle the overlay */
+}
+
+.cardContainer.dimmed .card {
+    opacity: 0.3; /* Dim non-hovered cards */
+    transition: opacity 0.3s ease; /* Smooth transition for dim effect */
+}
+
+.card {
+    background-color: #6c757d; /* Card background color */
+    color: #fff; /* Card text color */
+    margin-bottom: 20px; /* Add space between cards */
+    position: relative; /* Position relative for pseudo-element */
+    overflow: hidden; /* Hide overflow for pseudo-element */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Smooth transition for hover effects */
+    z-index: 1; /* Ensure card is above the overlay */
+    cursor: pointer; /* Show pointer cursor on hover */
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Elevation effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Shadow for elevation effect */
+    opacity: 1; /* Ensure hovered card stays at full opacity */
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column; /* Arrange content in a column */
+    background-color: #6c757d; /* Ensure the card body background is consistent */
+    padding: 20px; /* Add padding inside the card */
+    position: relative; /* Ensure content is above pseudo-element */
+    transition: max-height 0.3s ease; /* Smooth transition for expanding content */
+    z-index: 2; /* Ensure content is above the pseudo-element */
+}
+
+.imageContainer {
+    flex-shrink: 0; /* Prevent image container from shrinking */
+    margin-bottom: 20px; /* Space between image and description */
+}
+
+.image {
+    width: 150px; /* Increase image width */
+    height: 150px; /* Increase image height */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.content {
+    flex-grow: 1; /* Allow content to grow and fill available space */
+}
+
+.cryptoName {
+    font-size: 1.5em; /* Increase font size for cryptocurrency name */
+    font-weight: bold;
+}
+
+.cryptoSymbol {
+    font-size: 2em; /* Same size for the symbol */
+    color: #b5b5b5; /* Light color for the symbol */
+    margin-left: 10px;
+}
+
+.description {
+    color: #fff; /* Text color for description */
+    margin-top: 10px; /* Space between name and description */
+    max-height: 100px; /* Limit height to show scrollbar when content is too long */
+    overflow-y: auto; /* Show vertical scrollbar when content overflows */
+    margin-left: 10px;
+    transition: max-height 0.3s ease; /* Smooth transition for expanding content */
+}
+
+.cardContainer:hover .description {
+    max-height: 500px; /* Increase height on hover to reveal more text */
+}
+
+.details {
+    color: #fff; /* Text color for details */
+    margin-top: 10px; /* Space between description and details */
+    display: flex; /* Arrange details in a row */
+    flex-wrap: wrap; /* Allow wrapping if there are many details */
+    gap: 10px; /* Space between details */
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detail {
+    margin-bottom: 0; /* Remove bottom margin */
+}

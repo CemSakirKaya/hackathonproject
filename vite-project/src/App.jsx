@@ -10,10 +10,12 @@ import NavigationBar from './components/NavigationBar';
 function App() {
   return (
     <div id='app'>
-      <div className="navbar">
+     
+      <Router>
+ <div className="navbar">
         <NavigationBar />
       </div>
-      <Router>
+        
         <div className='page-content'> 
            <Routes >
           <Route path="/" element={<Home />} />
