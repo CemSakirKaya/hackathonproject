@@ -1,5 +1,5 @@
 .itemsContainer {
-    margin-top: 20px; /* Adjust based on your navbar height */
+    margin-top: 10px; /* Adjust based on your navbar height */
     padding: 20px; /* Add padding for content spacing */
     width: 100%;
     position: relative; /* Position relative to contain the overlay */
@@ -20,7 +20,7 @@
 }
 
 .card {
-    background-color: #6c757d; /* Card background color */
+    background-color: #373A40; /* Card background color */
     color: #fff; /* Card text color */
     margin-bottom: 20px; /* Add space between cards */
     position: relative; /* Position relative for pseudo-element */
@@ -40,7 +40,7 @@
 .cardBody {
     display: flex;
     flex-direction: column; /* Arrange content in a column */
-    background-color: #6c757d; /* Ensure the card body background is consistent */
+    background-color: #2e3640; /* Ensure the card body background is consistent */
     padding: 20px; /* Add padding inside the card */
     position: relative; /* Ensure content is above pseudo-element */
     transition: max-height 0.3s ease; /* Smooth transition for expanding content */
@@ -56,7 +56,7 @@
     width: 150px; /* Increase image width */
     height: 150px; /* Increase image height */
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 75px;
 }
 
 .content {
@@ -75,7 +75,9 @@
 }
 
 .description {
-    color: #fff; /* Text color for description */
+    color: #d5d5d5; /* Text color for description */
+    font-weight: 300;
+    font-size: large;
     margin-top: 10px; /* Space between name and description */
     max-height: 100px; /* Limit height to show scrollbar when content is too long */
     overflow-y: auto; /* Show vertical scrollbar when content overflows */
@@ -88,7 +90,7 @@
 }
 
 .details {
-    color: #fff; /* Text color for details */
+    color: #b5b5b5; /* Text color for details */
     margin-top: 10px; /* Space between description and details */
     display: flex; /* Arrange details in a row */
     flex-wrap: wrap; /* Allow wrapping if there are many details */

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../Items.module.css'; // Import custom CSS module
-import ethereum from "../assets/ethereum.jpg";
+import natıx from "../assets/natıx.jpg";
+import tap from "../assets/tap.png";
+import zkLink from "../assets/zkLink.jpg";
 
 export default function Items() {
     const [hoveredCard, setHoveredCard] = useState(null);
@@ -16,25 +18,29 @@ export default function Items() {
     const cards = [
         {
             id: 1,
-            name: 'ETH',
-            description: 'Lorem.',
-            details: ['1.000.000$', 'cba', '01.01.2027']
+            name: 'TAP',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt.',
+            img : tap ,
+            details: ['100.000$ raised', 'Sold out', '07.04.2024']
         },
         {
             id: 2,
-            name: 'BTC',
-            description: 'Lorem ipsum dLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameolor sit amet, ...',
-            details: ['350.000$', 'abc', '12.11.2024']
+            name: 'NATIX',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam sollicitudin ex, a consequat ex odio ac dolor. Donec in massa lectus. Etiam convallis.',
+            img :  natıx ,
+            details: ['350.000$ raised', 'Closed', '02.06.2024']
         },
         {
             id: 3,
-            name: 'LTC',
-            description: 'Loremamet, Lorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameLorem ipsum dolor sit ameconssit amet, ...',
-            details: ['20.000$', 'acb', '06.08.2025']
+            name: 'zkLink',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam.',
+            img: zkLink ,
+            details: ['150.000$ raised', '5 day remained', '27.07.2024']
         } 
     ];
 
     return (
+    
         <div className={styles.itemsContainer}>
             <table className={styles.table}>
                 <thead>
@@ -43,7 +49,7 @@ export default function Items() {
                             <div className={`${styles.card} ${styles.shadow}`}>
                                 <div className={styles.cardBody}>
                                     <div className="d-flex justify-content-center">
-                                        <div className='fw-bold text-center'>Last Projects</div>
+                                        <div  style={{fontSize:"20px",fontWeight:"bold"}} className='text-center'>LAST PROJECTS</div>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +69,7 @@ export default function Items() {
                                         <div className={styles.cardBody}>
                                             <div className="d-flex">
                                                 <div className={styles.imageContainer}>
-                                                    <img src={ethereum} alt="Ethereum" className={styles.image} />
+                                                    <img src={card.img} alt={card.img} className={styles.image} />
                                                 </div>
                                                 <div className={`${styles.content} ms-3`}>
                                                     <div className={styles.cryptoName}>

@@ -26,7 +26,7 @@ export default function Item({ card, isHovered, onMouseEnter, onMouseLeave }) {
                     </div>
                     <div className={`${styles.details} mt-3`}>
                         {card.details.map((detail, detailIndex) => (
-                            <div className={styles.detail} key={detailIndex}>{detail}</div>
+                            <div  className={styles.detail} key={detailIndex}>{detail}</div>
                         ))}
                     </div>
                 </div>

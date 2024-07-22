@@ -10,7 +10,7 @@ export default function NavigationBar() {
 
     return (
         <>
-            <h1 className="ml-3">Navigation</h1>
+            <h1 className="ml-3">EduPad</h1>
             <button className="btn btn-primary mr-3" onClick={handleCreateClick}>
                 Create
             </button>

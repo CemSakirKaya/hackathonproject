@@ -8,7 +8,7 @@
 /* Background color and scrolling setup for HTML and Body */
 html, body {
   min-height: 100%;
-  background-color: #f0f0f0; /* Background color for the entire page */
+  background-color: #526D82; /* Background color for the entire page */
   overflow: hidden; /* Allow scrolling for the body */
 }
 
@@ -42,7 +42,7 @@ body {
 .page-content {
   width: 75%;
   min-width: 800px; /* Example: Set minimum width for content */
-  background-color: #fff; /* Background color for content */
+  background-color: #9DB2BF; /* Background color for content */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for content */
   margin-top: 50px; /* Adjust based on navbar height */
   margin-bottom: 20px; /* Add margin-bottom to avoid content sticking to the bottom */
