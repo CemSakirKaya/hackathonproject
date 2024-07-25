@@ -1,0 +1,73 @@
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    padding: 20px; /* Add padding for content spacing */
+    width: 100%;
+    max-width: 1200px; /* Maximum width to center content */
+    margin: 0 auto; /* Center horizontally */
+    background-color: #9DB2BF; /* Background color for content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for content */
+  }
+  
+  .details {
+    color: #b5b5b5; /* Text color for details */
+    display: flex; /* Arrange details in a row */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    gap: 10px; /* Space between details */
+    justify-content: center; /* Center align the details */
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 20px; /* Space below details */
+  }
+  
+  .detail {
+    background-color: #373A40; /* Background color for detail items */
+    padding: 10px; /* Padding for detail items */
+    border-radius: 5px; /* Rounded corners for detail items */
+  }
+  
+  .infoContent {
+    display: flex; /* Arrange content in a row */
+    align-items: flex-start; /* Align items at the start of the container */
+    gap: 20px; /* Space between image and name/description */
+    width: 100%;
+    max-width: 1000px; /* Maximum width to prevent overflow */
+    justify-content: center; /* Center the content within the container */
+  }
+  
+  .imageContainer {
+    flex-shrink: 0; /* Prevent image container from shrinking */
+    margin-right: 20px; /* Space between image and other content */
+    text-align: center; /* Center the image */
+  }
+  
+  .image {
+    width: 150px; /* Adjust image size */
+    height: 150px; /* Explicit height */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 75px; /* Rounded corners for image */
+  }
+  
+  .nameAndDescription {
+    flex-grow: 1; /* Allow name/description to fill available space */
+    text-align: center; /* Center text horizontally */
+    max-width: 100%; /* Prevent overflow */
+  }
+  
+  .nameAndDescription h1 {
+    font-size: 2em; /* Adjust font size for the name */
+    color: #fff; /* Text color for name */
+    margin-bottom: 10px; /* Space below the name */
+  }
+  
+  .nameAndDescription p {
+    color: #d5d5d5; /* Description text color */
+    font-weight: 300;
+    font-size: large;
+    max-height: 150px; /* Limit height with overflow */
+    overflow-y: auto; /* Vertical scroll for overflow */
+    margin-left: 10px; /* Add margin to align with other content */
+  }
+  
