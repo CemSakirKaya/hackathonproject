@@ -22,6 +22,9 @@ html, body,#app  {
 
 
 /* Navbar styling */
+
+
+
 .navbar {
   width: 100%;
   background-color: #333;
@@ -33,10 +36,15 @@ html, body,#app  {
   z-index: 5;
 }
 
+.buttons{
+  margin-right: 1em;
+  padding: 0.5em ;
+}
+
 /* Content area setup */
 .page-content {
   width: 75%;
-  max-width: 1200px; /* Maximum width to avoid stretching */
+  /* Maximum width to avoid stretching */
   background-color: #9DB2BF; /* Background color for content */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for content */
   margin-top: 50px; /* Adjust based on navbar height */

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Info from './components/Info';
 import Create from './components/Create';
+import CreateLaunchpad from './components/CreateLaunchpad';
 
 import NavigationBar from './components/NavigationBar';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/info" element={<Info />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/createlaunchpad" element={<CreateLaunchpad />} />
         </Routes>
         </div>
        

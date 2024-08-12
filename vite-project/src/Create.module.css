@@ -1,0 +1,106 @@
+.createh1 {
+    color: #333;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    font-size: 4em; /* Larger font size for better visibility */
+    text-align: center; /* Center the heading */
+    font-weight: 500;
+    color: #373A40;
+  }
+  
+  .formContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow elements to wrap for responsiveness */
+    gap: 2em; /* Adequate spacing between sections */
+    max-width: 1400px; /* Increase the maximum width */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 0 20px; /* Add some padding for better spacing on the sides */
+    justify-content: center; /* Center elements within the container */
+    align-items: flex-start;
+  }
+  
+  .imageSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .imageLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .previewImage {
+    width: 200px; /* Increase the width */
+    height: 200px; /* Increase the height */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 2px solid #007bff;
+  }
+  
+  .placeholder {
+    width: 200px; /* Increase the width */
+    height: 200px; /* Increase the height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    color: #666;
+    border-radius: 8px;
+    border: 2px dashed #ccc;
+  }
+  
+  .imageInput {
+    display: none;
+  }
+  
+  .inputSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increase the gap for better spacing */
+    flex-grow: 1;
+    min-width: 300px; /* Set a minimum width to ensure visibility */
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 15px; /* Add padding for a more comfortable input field */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    font-size: 1.2em; /* Increase font size for better readability */
+  }
+  
+  .inputField:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .createButton {
+    margin-top: 0.5em; /* Increase margin for separation */
+    padding: 15px 30px; /* Adjust padding for a larger button */
+    font-size: 1.3em; /* Increase font size */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* Center the button */
+  }
+  
+  .createButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .createButton:active {
+    background-color: #004494;
+    transform: translateY(0);
+  }
+  

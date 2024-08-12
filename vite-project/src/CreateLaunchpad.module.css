@@ -1,0 +1,108 @@
+.createLaunchpadContainer {
+    padding: 30px;
+    background: #687985;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Ensure the container doesn't exceed viewport width */
+    width: auto; /* Allow the container to grow based on content */
+    margin: 0 auto; /* Center the container */
+    margin-top: 3em;
+    overflow-x: hidden; /* Hide any potential horizontal overflow */
+    font-weight: 600;
+}
+
+.formContainer {
+    margin-bottom: 30px; /* Increase margin */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 20px; /* Increase gap */
+    margin-bottom: 30px; /* Increase margin */
+}
+
+.fieldContainer {
+    flex: 1 1 48%; /* Flex-grow, flex-shrink, flex-basis */
+    display: flex;
+    flex-direction: column;
+}
+
+.inputField {
+    padding: 12px; /* Increase padding */
+    margin-top: 6px; /* Increase margin */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Increase border-radius */
+    font-size: 18px; /* Increase font size */
+    width: 100%; /* Ensure input fields take full width */
+    box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+.buttonRow {
+    display: flex;
+    gap: 20px; /* Increase gap */
+    margin-bottom: 30px; /* Increase margin */
+}
+
+.button {
+    padding: 12px 24px; /* Increase padding */
+    border: none;
+    border-radius: 6px; /* Increase border-radius */
+    color: #fff;
+    font-size: 18px; /* Increase font size */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.addButton {
+    background-color: #007bff;
+}
+
+.addButton:hover {
+    background-color: #0056b3;
+}
+
+.removeButton {
+    background-color: #dc3545;
+}
+
+.removeButton:hover {
+    background-color: #c82333;
+}
+
+.poolsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increase gap */
+}
+
+.poolCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px; /* Increase padding */
+    border-radius: 8px; /* Increase border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase shadow */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.poolCard:hover,
+.poolCard.selected {
+    background-color: #e6f0ff;
+    border-color: #007bff;
+}
+
+.poolCard:not(.selected) {
+    background-color: #9DB2BF;
+}
+
+.newPoolContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for inputs */
+    gap: 20px; /* Increase gap */
+    margin-bottom: 30px; /* Increase margin */
+}
+
+.newPoolContainer .fieldContainer {
+    flex: 1 1 48%; /* Flex-grow, flex-shrink, flex-basis */
+}
