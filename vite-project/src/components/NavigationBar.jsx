@@ -9,6 +9,10 @@ export default function NavigationBar() {
     const handleLaunchpadClick = () => {
         navigate('/');
     };
+    const handleCrateLaunchpadClick = () => {
+        navigate('/createlaunchpad');
+    };
+    
 
 
     return (
@@ -21,6 +25,10 @@ export default function NavigationBar() {
            <h1 className="ml-3" onClick={handleLaunchpadClick}>EduPad</h1>
 
             <div className='buttons'>
+            <button className="btn btn-secondary mr-2" onClick={handleCrateLaunchpadClick}>
+                Create Launchpad
+            </button>
+            
             <button className="btn btn-warning mr-2" onClick={handleLaunchpadClick}>
                 Launchpad List
             </button>

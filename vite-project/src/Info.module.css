@@ -188,3 +188,35 @@
   color: #007bff; /* Highlight icon color on hover */
   transform: scale(1.1); /* Slightly enlarge icon on hover */
 }
+.errorMessage {
+  color: red; /* Red color for error message */
+  margin-top: 0.5em; /* Space above error message */
+  font-size: 0.875em; /* Slightly smaller font size */
+  text-align: center; /* Center the text */
+}
+
+.lockedAmountContainer {
+  text-align: center;
+  padding: 2em;
+  background-color:  #bec9d2;/* Light background for locked amount section */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  color: #373A40; 
+  
+}
+
+.claimButton {
+  font-size: 1.2em; /* Larger font size */
+  padding: 0.75em 1.5em; /* Increased padding */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #28a745; /* Green background color */
+  color: #fff; /* White text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.claimButton:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}

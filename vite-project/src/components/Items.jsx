@@ -21,6 +21,7 @@ export default function Items() {
     const handleCardClick = (card) => {
         console.log(card)
         navigate('/info', { state: { card: {
+            id : card.getId(),
             name: card.getName(),
             description: card.getDescription(),
             img: card.getImg(),
@@ -28,9 +29,9 @@ export default function Items() {
         } } });
     };
 
-    const tapObject = new Token(1, 'TAP', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt.', tap, ['100.000$ raised', 'Sold out', '07.04.2024']);
-    const natıxObject = new Token(2, 'NATIX', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam sollicitudin ex, a consequat ex odio ac dolor. Donec in massa lectus. Etiam convallis.', natıx, ['350.000$ raised', 'Closed', '02.06.2024']);
-    const zkLinkObject = new Token(3, 'zkLink', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam.', zkLink, ['150.000$ raised', '5 day remained', '27.07.2024']);
+    const tapObject = new Token(1, 'TAP', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt.', tap, ['100.000$ raised', 'Sold out', '07.04.2025']);
+    const natıxObject = new Token(2, 'NATIX', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam sollicitudin ex, a consequat ex odio ac dolor. Donec in massa lectus. Etiam convallis.', natıx, ['350.000$ raised', 'Closed', '13.08.2024']);
+    const zkLinkObject = new Token(3, 'zkLink', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt scelerisque diam, nec ultricies ligula cursus in. Curabitur non turpis leo. Fusce ac nisi at elit convallis tristique. Phasellus pretium turpis eget ipsum ultricies, sed volutpat purus luctus. Aenean aliquet lacus sit amet lectus laoreet, non vehicula felis tincidunt. Vivamus vehicula sapien a malesuada porttitor. Sed id felis nec justo posuere consectetur. Suspendisse potenti. Mauris euismod, erat eget vehicula fermentum, augue quam.', zkLink, ['150.000$ raised', '5 day remained', '27.07.2025']);
 
     const cards = [ zkLinkObject,tapObject, natıxObject];
 

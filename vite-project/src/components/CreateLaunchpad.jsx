@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from "../CreateLaunchpad.module.css"; // Import CSS for this component
 
 export default function CreateLaunchpad() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const address = queryParams.get('address');
+  const initialAddress = queryParams.get('address') || '';
 
+  const [address, setAddress] = useState(initialAddress);
   const [pools, setPools] = useState([]);
   const [selectedPool, setSelectedPool] = useState(null);
   const [newPool, setNewPool] = useState({
     tokenAddress: '',
     totalAmount: '',
-    maxAmountPerPerson: ''
+    maxAmountPerPerson: '',
+    periodTime: ''
   });
 
   const handleAddPool = () => {
     // Ensure all fields are filled before adding a new pool
-    if (newPool.tokenAddress && newPool.totalAmount && newPool.maxAmountPerPerson) {
+    if (newPool.tokenAddress && newPool.totalAmount && newPool.maxAmountPerPerson && newPool.periodTime) {
       setPools([...pools, newPool]);
       setNewPool({
         tokenAddress: '',
         totalAmount: '',
-        maxAmountPerPerson: ''
+        maxAmountPerPerson: '',
+        periodTime: ''
       });
       setSelectedPool(null); // Reset selected pool after adding
     }
@@ -40,10 +43,26 @@ export default function CreateLaunchpad() {
   };
 
   const handleChange = (e) => {
-    setNewPool({
-      ...newPool,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    // Allow only positive integers for specific fields
+    if (['totalAmount', 'maxAmountPerPerson', 'periodTime'].includes(name)) {
+      if (/^\d*$/.test(value)) { // Only accept digits
+        setNewPool({
+          ...newPool,
+          [name]: value
+        });
+      }
+    } else {
+      setNewPool({
+        ...newPool,
+        [name]: value
+      });
+    }
+  };
+
+  // Handle changes for the address input
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
   };
 
   return (
@@ -55,9 +74,11 @@ export default function CreateLaunchpad() {
             <input
               type="text"
               id="address"
-              value={address || ''}
-              readOnly
+              value={address}
+              readOnly={Boolean(initialAddress)} // Make readOnly only if initialAddress is not empty
+              placeholder="Enter token contract address"
               className={styles.inputField}
+              onChange={handleAddressChange} // Allow changes if editable
             />
           </div>
           <div className={styles.fieldContainer}>
@@ -65,6 +86,9 @@ export default function CreateLaunchpad() {
             <input
               type="text"
               id="periodTime"
+              name="periodTime"
+              value={newPool.periodTime}
+              onChange={handleChange}
               placeholder="Enter period time"
               className={styles.inputField}
             />
@@ -101,22 +125,24 @@ export default function CreateLaunchpad() {
           <div className={styles.fieldContainer}>
             <label htmlFor="newTotalAmount">Total Amount</label>
             <input
-              type="number"
+              type="text"
               id="newTotalAmount"
               name="totalAmount"
               value={newPool.totalAmount}
               onChange={handleChange}
+              placeholder="Enter total amount"
               className={styles.inputField}
             />
           </div>
           <div className={styles.fieldContainer}>
             <label htmlFor="newMaxAmountPerPerson">Max Amount Per Person</label>
             <input
-              type="number"
+              type="text"
               id="newMaxAmountPerPerson"
               name="maxAmountPerPerson"
               value={newPool.maxAmountPerPerson}
               onChange={handleChange}
+              placeholder="Enter max amount per person"
               className={styles.inputField}
             />
           </div>
@@ -143,7 +169,7 @@ export default function CreateLaunchpad() {
                 <div className={styles.fieldContainer}>
                   <label htmlFor={`totalAmount-${index}`}>Total Amount</label>
                   <input
-                    type="number"
+                    type="text"
                     id={`totalAmount-${index}`}
                     value={pool.totalAmount}
                     readOnly
@@ -153,9 +179,19 @@ export default function CreateLaunchpad() {
                 <div className={styles.fieldContainer}>
                   <label htmlFor={`maxAmountPerPerson-${index}`}>Max Amount Per Person</label>
                   <input
-                    type="number"
+                    type="text"
                     id={`maxAmountPerPerson-${index}`}
                     value={pool.maxAmountPerPerson}
+                    readOnly
+                    className={styles.inputField}
+                  />
+                </div>
+                <div className={styles.fieldContainer}>
+                  <label htmlFor={`periodTime-${index}`}>Period Time</label>
+                  <input
+                    type="text"
+                    id={`periodTime-${index}`}
+                    value={pool.periodTime}
                     readOnly
                     className={styles.inputField}
                   />
