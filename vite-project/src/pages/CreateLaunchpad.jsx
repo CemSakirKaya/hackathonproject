@@ -1,31 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "../CreateLaunchpad.module.css"; // Import CSS for this component
 
 export default function CreateLaunchpad() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const initialAddress = queryParams.get('address') || '';
+  const initialAddress = queryParams.get("address") || "";
 
   const [address, setAddress] = useState(initialAddress);
   const [pools, setPools] = useState([]);
   const [selectedPool, setSelectedPool] = useState(null);
   const [newPool, setNewPool] = useState({
-    tokenAddress: '',
-    totalAmount: '',
-    maxAmountPerPerson: '',
-    periodTime: ''
+    tokenAddress: "",
+    totalAmount: "",
+    maxAmountPerPerson: "",
+    periodTime: "",
   });
 
   const handleAddPool = () => {
     // Ensure all fields are filled before adding a new pool
-    if (newPool.tokenAddress && newPool.totalAmount && newPool.maxAmountPerPerson && newPool.periodTime) {
+    if (
+      newPool.tokenAddress &&
+      newPool.totalAmount &&
+      newPool.maxAmountPerPerson &&
+      newPool.periodTime
+    ) {
       setPools([...pools, newPool]);
       setNewPool({
-        tokenAddress: '',
-        totalAmount: '',
-        maxAmountPerPerson: '',
-        periodTime: ''
+        tokenAddress: "",
+        totalAmount: "",
+        maxAmountPerPerson: "",
+        periodTime: "",
       });
       setSelectedPool(null); // Reset selected pool after adding
     }
@@ -45,17 +50,18 @@ export default function CreateLaunchpad() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     // Allow only positive integers for specific fields
-    if (['totalAmount', 'maxAmountPerPerson', 'periodTime'].includes(name)) {
-      if (/^\d*$/.test(value)) { // Only accept digits
+    if (["totalAmount", "maxAmountPerPerson", "periodTime"].includes(name)) {
+      if (/^\d*$/.test(value)) {
+        // Only accept digits
         setNewPool({
           ...newPool,
-          [name]: value
+          [name]: value,
         });
       }
     } else {
       setNewPool({
         ...newPool,
-        [name]: value
+        [name]: value,
       });
     }
   };
@@ -109,7 +115,7 @@ export default function CreateLaunchpad() {
             Remove Pool
           </button>
         </div>
-     
+
         <div className={styles.newPoolContainer}>
           <div className={styles.fieldContainer}>
             <label htmlFor="newTokenAddress">Token Contract Address</label>
@@ -153,11 +159,13 @@ export default function CreateLaunchpad() {
             {pools.map((pool, index) => (
               <div
                 key={index}
-                className={`${styles.poolCard} ${selectedPool === index ? styles.selected : ''}`}
+                className={`${styles.poolCard} ${selectedPool === index ? styles.selected : ""}`}
                 onClick={() => handlePoolClick(index)}
               >
                 <div className={styles.fieldContainer}>
-                  <label htmlFor={`tokenAddress-${index}`}>Token Contract Address</label>
+                  <label htmlFor={`tokenAddress-${index}`}>
+                    Token Contract Address
+                  </label>
                   <input
                     type="text"
                     id={`tokenAddress-${index}`}
@@ -177,7 +185,9 @@ export default function CreateLaunchpad() {
                   />
                 </div>
                 <div className={styles.fieldContainer}>
-                  <label htmlFor={`maxAmountPerPerson-${index}`}>Max Amount Per Person</label>
+                  <label htmlFor={`maxAmountPerPerson-${index}`}>
+                    Max Amount Per Person
+                  </label>
                   <input
                     type="text"
                     id={`maxAmountPerPerson-${index}`}

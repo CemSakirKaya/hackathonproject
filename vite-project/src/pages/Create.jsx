@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import styles from "../Create.module.css";
 
 export default function Create() {
   const [image, setImage] = useState(null);
-  const [tokenName, setTokenName] = useState('');
-  const [tokenSupply, setTokenSupply] = useState('');
+  const [tokenName, setTokenName] = useState("");
+  const [tokenSupply, setTokenSupply] = useState("");
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleImageChange = (e) => {
@@ -32,7 +32,7 @@ export default function Create() {
     const supply = parseFloat(tokenSupply);
 
     // Log current state for debugging
-    console.log('Current State:', {
+    console.log("Current State:", {
       image,
       tokenName,
       tokenSupply,
@@ -40,12 +40,14 @@ export default function Create() {
     });
 
     if (!image || !tokenName || supply <= 0) {
-      alert('All fields must be filled and token supply must be greater than zero.');
+      alert(
+        "All fields must be filled and token supply must be greater than zero.",
+      );
       return;
     }
 
     // Proceed with token creation
-    console.log('Creating token:', {
+    console.log("Creating token:", {
       image,
       tokenName,
       tokenSupply: supply,
@@ -103,10 +105,7 @@ export default function Create() {
           />
         </div>
       </div>
-      <button
-        className={styles.createButton}
-        onClick={handleCreateToken}
-      >
+      <button className={styles.createButton} onClick={handleCreateToken}>
         Create Token
       </button>
     </>

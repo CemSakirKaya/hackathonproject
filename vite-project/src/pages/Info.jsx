@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "../Info.module.css"; // Ensure this path is correct
 
@@ -23,14 +23,12 @@ export default function Info() {
 
       // Check if the saved card ID matches the current card ID
       if (savedCardId == card.id) {
-        
         if (savedAmount) {
-         console.log(savedCardId == card.id,savedAmount,savedButton);
+          console.log(savedCardId == card.id, savedAmount, savedButton);
           setAmount(savedAmount);
         }
         if (savedButton) {
           setActiveButton(savedButton);
- 
         }
       }
     }
@@ -97,19 +95,44 @@ export default function Info() {
       </div>
 
       <div className={styles.links}>
-        <a href={card.website} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a
+          href={card.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <i className="fas fa-globe"></i> Website
         </a>
-        <a href={card.whitepaper} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a
+          href={card.whitepaper}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <i className="fas fa-file-alt"></i> Whitepaper
         </a>
-        <a href={card.ioResearchReport} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a
+          href={card.ioResearchReport}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <i className="fas fa-search"></i> IO Research Report
         </a>
-        <a href={card.detailedRules} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a
+          href={card.detailedRules}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <i className="fas fa-list"></i> Detailed Rules
         </a>
-        <a href={card.launchpoolTutorial} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a
+          href={card.launchpoolTutorial}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <i className="fas fa-graduation-cap"></i> Launchpool Tutorial
         </a>
       </div>
@@ -124,61 +147,68 @@ export default function Info() {
       </div>
 
       {isDateInFuture ? (
-  <div
-    style={{
-      border: "2px solid #373A40",
-      borderRadius: "2em",
-      textAlign: "center",
-      padding: "1.5em",
-    }}
-  >
-    <h1 style={{ color: "white", fontSize: "5em" }}>Lock</h1>
-    <div className={styles.buttonContainer}>
-      <button
-        className={`${styles.btnCustom} ${activeButton === "EDU" ? styles.activeButton : ""}`}
-        onClick={() => handleButtonClick("EDU")}
-      >
-        EDU
-      </button>
-      <button
-        className={`${styles.btnCustom} ${activeButton === "USDC" ? styles.activeButton : ""}`}
-        onClick={() => handleButtonClick("USDC")}
-      >
-        USDC
-      </button>
-      <button
-        className={`${styles.btnCustom} ${activeButton === "USDT" ? styles.activeButton : ""}`}
-        onClick={() => handleButtonClick("USDT")}
-      >
-        USDT
-      </button>
-    </div>
+        <div
+          style={{
+            border: "2px solid #373A40",
+            borderRadius: "2em",
+            textAlign: "center",
+            padding: "1.5em",
+          }}
+        >
+          <h1 style={{ color: "white", fontSize: "5em" }}>Lock</h1>
+          <div className={styles.buttonContainer}>
+            <button
+              className={`${styles.btnCustom} ${activeButton === "EDU" ? styles.activeButton : ""}`}
+              onClick={() => handleButtonClick("EDU")}
+            >
+              EDU
+            </button>
+            <button
+              className={`${styles.btnCustom} ${activeButton === "USDC" ? styles.activeButton : ""}`}
+              onClick={() => handleButtonClick("USDC")}
+            >
+              USDC
+            </button>
+            <button
+              className={`${styles.btnCustom} ${activeButton === "USDT" ? styles.activeButton : ""}`}
+              onClick={() => handleButtonClick("USDT")}
+            >
+              USDT
+            </button>
+          </div>
 
-    <div className={styles.amountContainer}>
-      <input
-        type="number"
-        className={`${styles.amountInput} ${isInputActive ? styles.activeInput : ""}`}
-        value={ amount}
-        onFocus={() => setIsInputActive(true)}
-        onChange={(e) => setAmount(e.target.value)}
-        disabled={isLocked}
-      />
-      <button onClick={toggleLock} className={styles.lockButton}>
-        {isLocked ? <i className="fas fa-lock"></i> : <i className="fas fa-lock-open"></i>}
-      </button>
-    </div>
-    {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
-  </div>
-) : (
-  <div className={styles.lockedAmountContainer}>
-    <h2 style={{marginBottom:"0.5em"}}>Locked Amount</h2>
-    <p>{amount} {activeButton}</p>
-    <h2 style={{marginBottom:"0.5em"}}>Gained Amount</h2>
-    <p>{/* Calculate and display gained amount here */ }-</p>
-    <button className={styles.claimButton}>Claim</button>
-  </div>
-)}
-
+          <div className={styles.amountContainer}>
+            <input
+              type="number"
+              className={`${styles.amountInput} ${isInputActive ? styles.activeInput : ""}`}
+              value={amount}
+              onFocus={() => setIsInputActive(true)}
+              onChange={(e) => setAmount(e.target.value)}
+              disabled={isLocked}
+            />
+            <button onClick={toggleLock} className={styles.lockButton}>
+              {isLocked ? (
+                <i className="fas fa-lock"></i>
+              ) : (
+                <i className="fas fa-lock-open"></i>
+              )}
+            </button>
+          </div>
+          {errorMessage && (
+            <div className={styles.errorMessage}>{errorMessage}</div>
+          )}
+        </div>
+      ) : (
+        <div className={styles.lockedAmountContainer}>
+          <h2 style={{ marginBottom: "0.5em" }}>Locked Amount</h2>
+          <p>
+            {amount} {activeButton}
+          </p>
+          <h2 style={{ marginBottom: "0.5em" }}>Gained Amount</h2>
+          <p>{/* Calculate and display gained amount here */}-</p>
+          <button className={styles.claimButton}>Claim</button>
+        </div>
+      )}
     </div>
   );
 }
