@@ -8,29 +8,31 @@ export default function CreateLaunchpad() {
   const initialAddress = queryParams.get("address") || "";
 
   const [address, setAddress] = useState(initialAddress);
+  const [period, setPeriod] = useState(null);
   const [pools, setPools] = useState([]);
   const [selectedPool, setSelectedPool] = useState(null);
   const [newPool, setNewPool] = useState({
     tokenAddress: "",
     totalAmount: "",
     maxAmountPerPerson: "",
-    periodTime: "",
   });
+
+  const handlePeriodChange = (e) => {
+    setPeriod(e.target.value);
+  };
 
   const handleAddPool = () => {
     // Ensure all fields are filled before adding a new pool
     if (
       newPool.tokenAddress &&
       newPool.totalAmount &&
-      newPool.maxAmountPerPerson &&
-      newPool.periodTime
+      newPool.maxAmountPerPerson
     ) {
       setPools([...pools, newPool]);
       setNewPool({
         tokenAddress: "",
         totalAmount: "",
         maxAmountPerPerson: "",
-        periodTime: "",
       });
       setSelectedPool(null); // Reset selected pool after adding
     }
@@ -47,10 +49,20 @@ export default function CreateLaunchpad() {
     setSelectedPool(index);
   };
 
+  const handleCreateLaunchPad = () => {
+    if (period == null || address == null || address == "") {
+      console.log("can not be null");
+    }
+    if (pools.length < 1) {
+      console.log("there must be at least one pool");
+    }
+    console.log("created");
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     // Allow only positive integers for specific fields
-    if (["totalAmount", "maxAmountPerPerson", "periodTime"].includes(name)) {
+    if (["totalAmount", "maxAmountPerPerson"].includes(name)) {
       if (/^\d*$/.test(value)) {
         // Only accept digits
         setNewPool({
@@ -93,8 +105,8 @@ export default function CreateLaunchpad() {
               type="text"
               id="periodTime"
               name="periodTime"
-              value={newPool.periodTime}
-              onChange={handleChange}
+              value={period}
+              onChange={handlePeriodChange}
               placeholder="Enter period time"
               className={styles.inputField}
             />
@@ -196,21 +208,17 @@ export default function CreateLaunchpad() {
                     className={styles.inputField}
                   />
                 </div>
-                <div className={styles.fieldContainer}>
-                  <label htmlFor={`periodTime-${index}`}>Period Time</label>
-                  <input
-                    type="text"
-                    id={`periodTime-${index}`}
-                    value={pool.periodTime}
-                    readOnly
-                    className={styles.inputField}
-                  />
-                </div>
               </div>
             ))}
           </div>
         )}
       </div>
+      <button
+        className={`${styles.button} ${styles.addButton}`}
+        onClick={handleCreateLaunchPad}
+      >
+        Create LaunchPad
+      </button>
     </div>
   );
 }
