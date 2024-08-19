@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "../CreateLaunchpad.module.css"; // Import CSS for this component
+import { createLaunchPadFromExist } from "../utils/binding";
 
 export default function CreateLaunchpad() {
   const location = useLocation();
@@ -49,14 +50,22 @@ export default function CreateLaunchpad() {
     setSelectedPool(index);
   };
 
-  const handleCreateLaunchPad = () => {
+  const handleCreateLaunchPad = async () => {
     if (period == null || address == null || address == "") {
       console.log("can not be null");
     }
     if (pools.length < 1) {
       console.log("there must be at least one pool");
     }
-    console.log("created");
+
+    //---------
+    //get signer
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    //-------
+
+    const result = await createLaunchPadFromExist(signer, "", [], 500);
+    console.log(result);
   };
 
   const handleChange = (e) => {
