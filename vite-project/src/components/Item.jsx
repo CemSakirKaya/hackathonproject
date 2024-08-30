@@ -1,5 +1,4 @@
 import styles from "../Items.module.css"; // Import custom CSS module
-import ethereum from "../assets/ethereum.jpg";
 
 export default function Item({
   card,
@@ -12,9 +11,9 @@ export default function Item({
   return (
     <div
       className={`${styles.cardContainer} ${hoveredCardIndex != card.id ? "" : styles.dimmed}`}
-      onMouseEnter={() => onMouseEnter(card.id)}
+      onMouseEnter={() => onMouseEnter(card.launchToken)}
       onMouseLeave={onMouseLeave}
-      onClick={() => handleCardClick(card)}
+      onClick={() => handleCardClick(card.launchPadAddress)}
     >
       <div className={`${styles.card} ${styles.shadow}`}>
         <div className={styles.cardBody}>
@@ -24,7 +23,7 @@ export default function Item({
             </div>
             <div className={`${styles.content} ms-3`}>
               <div className={styles.cryptoName}>
-                <span className={styles.cryptoSymbol}>{card?.name}</span>
+                <span className={styles.cryptoSymbol}>{card?.launchToken}</span>
               </div>
               <div className={`${styles.description} mt-2`}>
                 {card?.description}
@@ -32,11 +31,11 @@ export default function Item({
             </div>
           </div>
           <div className={`${styles.details} mt-3`}>
-            {card?.details?.map((detail, detailIndex) => (
-              <div className={styles.detail} key={detailIndex}>
-                {detail}
-              </div>
-            ))}
+            {/* {card?.details?.map((detail, detailIndex) => ( */}
+            {/*   <div className={styles.detail} key={detailIndex}> */}
+            {/*     {detail} */}
+            {/*   </div> */}
+            {/* ))} */}
           </div>
         </div>
       </div>

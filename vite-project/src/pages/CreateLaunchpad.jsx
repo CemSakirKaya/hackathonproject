@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "../CreateLaunchpad.module.css"; // Import CSS for this component
-import { createLaunchPadFromExist } from "../utils/binding";
+import {
+  createLaunchPadFromExist,
+  transfer,
+  approve,
+  startPools,
+} from "../utils/binding";
+import { ethers } from "ethers";
 
 export default function CreateLaunchpad() {
   const location = useLocation();
@@ -58,14 +64,36 @@ export default function CreateLaunchpad() {
       console.log("there must be at least one pool");
     }
 
-    //---------
-    //get signer
+    let amount = 0;
+    const mappedPools = pools.map((pool) => {
+      amount += Number(pool.totalAmount);
+      return {
+        poolTokenAddress: pool.tokenAddress,
+        launchTokenAmount: Number(pool.totalAmount),
+      };
+    });
+    console.log(amount);
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
-    //-------
 
-    const result = await createLaunchPadFromExist(signer, "", [], 500);
-    console.log(result);
+    const result = await createLaunchPadFromExist(
+      signer,
+      address,
+      mappedPools,
+      period,
+    );
+
+    const launchPadAddress = result.logs[0].address;
+
+    const signer1 = await provider.getSigner();
+    await approve(signer1, address, launchPadAddress, amount);
+
+    const signer2 = await provider.getSigner();
+
+    await transfer(signer2, address, launchPadAddress, amount);
+
+    const signerPools = await provider.getSigner();
+    await startPools(signerPools, launchPadAddress);
   };
 
   const handleChange = (e) => {

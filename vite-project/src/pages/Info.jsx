@@ -1,42 +1,43 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import styles from "../Info.module.css"; // Ensure this path is correct
+import { getLaunchPadData } from "../utils/binding";
+import tap from "../assets/tapprotocol.jpg";
+import { ethers } from "ethers";
 
 export default function Info() {
-  const location = useLocation();
-  console.log("Location:", location);
-
-  const { card } = location.state || {};
-
   const [activeButton, setActiveButton] = useState(null);
   const [amount, setAmount] = useState("");
   const [isLocked, setIsLocked] = useState(false);
   const [isInputActive, setIsInputActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [card, setCard] = useState(null);
 
   useEffect(() => {
-    if (card) {
-      // Retrieve saved data from local storage
-      const savedCardId = localStorage.getItem(`savedCardId${card.id}`);
-      const savedAmount = localStorage.getItem(`savedAmount${card.id}`);
-      const savedButton = localStorage.getItem(`savedButton${card.id}`);
-
-      // Check if the saved card ID matches the current card ID
-      if (savedCardId == card.id) {
-        if (savedAmount) {
-          console.log(savedCardId == card.id, savedAmount, savedButton);
-          setAmount(savedAmount);
-        }
-        if (savedButton) {
-          setActiveButton(savedButton);
-        }
+    (async () => {
+      try {
+        const signer = new ethers.BrowserProvider(window.ethereum);
+        const card = await getLaunchPadData(
+          signer,
+          searchParams.get("launchPadAddress"),
+        );
+        const cardInfo = {
+          launchPadAddress: searchParams.get("launchPadAddress"),
+          isStarted: card["0"],
+          pools: card["1"],
+          launchTokenAddress: card["2"],
+          totalLaunchTokenAmount: card["3"],
+          launchToken: card["4"],
+          launchPadTime: Number(card["5"]),
+          img: tap,
+        };
+        setCard(cardInfo);
+      } catch (err) {
+        console.log(err);
       }
-    }
-  }, [card]);
-
-  if (!card) {
-    return <p>No card data available.</p>;
-  }
+    })();
+  }, [searchParams]);
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -69,18 +70,19 @@ export default function Info() {
   };
 
   // Get the current UNIX timestamp
-  const currentTimestamp = Math.floor(Date.now() / 1000);
 
-  // Assuming card.details[2] contains the date string in "DD.MM.YYYY" format
-  const dateString = card.details[2];
-  const [day, month, year] = dateString.split(".");
+  const dateString = useMemo(
+    () => new Date(card?.launchPadTime * 1000),
+    [card?.launchPadTime],
+  );
 
-  // Convert to a Date object
-  const cardDate = new Date(`${year}-${month}-${day}`);
-  const cardTimestamp = Math.floor(cardDate.getTime() / 1000); // Convert to UNIX timestamp
+  const isDateInFuture = useMemo(() => {
+    return card?.launchPadTime > Math.floor(Date.now() / 1000);
+  }, [card?.launchPadTime]);
 
-  // Check if the card's date is greater than the current date
-  const isDateInFuture = cardTimestamp > currentTimestamp;
+  if (!card) {
+    return <p>No card data available.</p>;
+  }
 
   return (
     <div className={styles.infoContainer}>
@@ -89,11 +91,10 @@ export default function Info() {
           <img src={card.img} alt={card.name} className={styles.image} />
         </div>
         <div className={styles.nameAndDescription}>
-          <h1>{card.name}</h1>
+          <h1>{Math.floor(Date.now() / 1000)}</h1>
           <p>{card.description}</p>
         </div>
       </div>
-
       <div className={styles.links}>
         <a
           href={card.website}
@@ -136,7 +137,6 @@ export default function Info() {
           <i className="fas fa-graduation-cap"></i> Launchpool Tutorial
         </a>
       </div>
-
       <div className={styles.details}>
         {card.details &&
           card.details.map((detail, index) => (
@@ -145,7 +145,6 @@ export default function Info() {
             </div>
           ))}
       </div>
-
       {isDateInFuture ? (
         <div
           style={{

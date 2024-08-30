@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import styles from "../Create.module.css";
+import { ethers } from "ethers";
+import { createToken } from "../utils/binding";
 
 export default function Create() {
   const [image, setImage] = useState(null);
@@ -27,7 +29,7 @@ export default function Create() {
     e.preventDefault();
   };
 
-  const handleCreateToken = () => {
+  const handleCreateToken = async () => {
     // Convert tokenSupply to a number
     const supply = parseFloat(tokenSupply);
 
@@ -52,16 +54,15 @@ export default function Create() {
       tokenName,
       tokenSupply: supply,
     });
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
 
-    // Get the random address and navigate
-    const address = returnRandomAddress();
-    navigate(`/createlaunchpad?address=${encodeURIComponent(address)}`);
+    const response = await createToken(signer, tokenName, tokenSupply);
+
+    navigate(
+      `/createlaunchpad?address=${encodeURIComponent(response.logs[0].address)}`,
+    );
   };
-
-  function returnRandomAddress() {
-    // Replace this with your actual address retrieval logic
-    return "ddjfjkdfjkjkdgjkdgdjk";
-  }
 
   return (
     <>
